@@ -1,6 +1,6 @@
-package com.prettyprinter.test;
+package com.idozah.prettyprinter.test;
 
-public class TestClass3 {
+class TestClass3 {
 
 	public static int blop = -1;
 	public int aBInt;

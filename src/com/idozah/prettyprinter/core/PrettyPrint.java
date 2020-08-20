@@ -1,10 +1,10 @@
-package com.prettyprinter.core;
+package com.idozah.prettyprinter.core;
 
 import java.lang.reflect.*;
 import java.util.Collection;
 
-import com.prettyprinter.config.*;
-import com.prettyprinter.string.beans.*;
+import com.idozah.prettyprinter.config.*;
+import com.idozah.prettyprinter.string.beans.*;
 
 public class PrettyPrint {
 	public static PrettyString toPrettyStrings(Object object, PrettyAccessor accessor) {

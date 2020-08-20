@@ -1,4 +1,4 @@
-package com.prettyprinter.config;
+package com.idozah.prettyprinter.config;
 
 public class PrettyConfig {
 	private char rowSepChar;

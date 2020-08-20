@@ -1,6 +1,6 @@
-package com.prettyprinter.string.beans;
+package com.idozah.prettyprinter.string.beans;
 
-import com.prettyprinter.config.PrettyConfig;
+import com.idozah.prettyprinter.config.PrettyConfig;
 
 public abstract class PrettyString {
 

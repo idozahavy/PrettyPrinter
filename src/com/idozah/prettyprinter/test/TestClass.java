@@ -1,10 +1,11 @@
-package com.prettyprinter.test;
+package com.idozah.prettyprinter.test;
 
-public class TestClass {
+class TestClass {
 	private String aString;
 	private int bInt;
 	private boolean cBool;
 	private double dDouble;
+
 	public TestClass(String aString, int bInt, boolean cBool, double dDouble) {
 		this.aString = aString;
 		this.bInt = bInt;
