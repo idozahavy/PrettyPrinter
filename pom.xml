@@ -3,18 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>0.1.0</modelVersion>
+	
 	<groupId>com.github.idozahavy</groupId>
-	
 	<artifactId>prettyprinter</artifactId>
-	
 	<version>0.1.0</version>
-	
 	<packaging>jar</packaging>
 	
 	<name>com.github.idozahavy.prettyprinter</name>
-	
 	<description>Class printer by reflections</description>
-
 	<url>https://github.com/idozahavy/PrettyPrinter</url>
 	
 	<licenses>

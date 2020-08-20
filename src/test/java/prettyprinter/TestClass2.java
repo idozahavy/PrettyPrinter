@@ -1,6 +1,7 @@
-package com.idozah.prettyprinter.test;
+package prettyprinter;
 
 class TestClass2 {
+	@SuppressWarnings("unused")
 	private TestClass class1;
 	public int aInt;
 

@@ -1,9 +1,9 @@
-package com.idozah.prettyprinter.string.beans;
+package com.github.idozahavy.prettyprinter.string.beans;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.idozah.prettyprinter.config.PrettyConfig;
+import com.github.idozahavy.prettyprinter.config.PrettyConfig;
 
 public class PrettyStringMap extends PrettyString {
 	private List<PrettyString> rows;

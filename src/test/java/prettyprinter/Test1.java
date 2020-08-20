@@ -1,11 +1,11 @@
-package com.idozah.prettyprinter.test;
+package prettyprinter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.idozah.prettyprinter.config.PrettyAccessor;
-import com.idozah.prettyprinter.config.PrettyConfig;
-import com.idozah.prettyprinter.core.PrettyPrint;
+import com.github.idozahavy.prettyprinter.config.PrettyAccessor;
+import com.github.idozahavy.prettyprinter.config.PrettyConfig;
+import com.github.idozahavy.prettyprinter.core.PrettyPrint;
 
 class Test1 {
 
@@ -23,7 +23,7 @@ class Test1 {
 		List<Integer> ls = new ArrayList<Integer>();
 		ls.add(5);
 		ls.add(5);
-		ls.add(5);
+		ls.add(6);
 		ls.add(5);
 		ls.add(5);
 

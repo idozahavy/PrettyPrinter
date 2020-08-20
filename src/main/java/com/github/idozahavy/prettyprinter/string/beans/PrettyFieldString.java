@@ -1,6 +1,6 @@
-package com.idozah.prettyprinter.string.beans;
+package com.github.idozahavy.prettyprinter.string.beans;
 
-import com.idozah.prettyprinter.config.PrettyConfig;
+import com.github.idozahavy.prettyprinter.config.PrettyConfig;
 
 public class PrettyFieldString extends PrettyString {
 	private String header;

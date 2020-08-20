@@ -1,1 +1,0 @@
-jar cf PrettyPrinter.jar com/idozah/prettyprinter/config com/idozah/prettyprinter/core com/idozah/prettyprinter/string
