@@ -15,7 +15,7 @@ public class AString extends PrettyString {
 	}
 
 	@Override
-	public int getRowCount(PrettyConfig config) {
+	public int getRowCount() {
 		return 1;
 	}
 
@@ -39,7 +39,6 @@ public class AString extends PrettyString {
 		if (row == 0) {
 			return String.valueOf(config.getRowSep()).repeat(getWidth(config));
 		}
-		return " ".repeat(getRowCount(config));
+		return " ".repeat(getRowCount());
 	}
-
 }

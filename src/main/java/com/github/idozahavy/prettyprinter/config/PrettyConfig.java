@@ -1,6 +1,8 @@
 package com.github.idozahavy.prettyprinter.config;
 
 public class PrettyConfig {
+	public static final PrettyConfig defaultConfig = new PrettyConfig('-', " | ", '*', '*', " *", "* ");
+	
 	private char rowSepChar;
 	private String itemSepStr;
 	private char topEdgeChar;
@@ -41,5 +43,6 @@ public class PrettyConfig {
 	public String getLeftEdge() {
 		return leftEdgeStr;
 	}
+	
 
 }

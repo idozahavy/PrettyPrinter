@@ -28,7 +28,7 @@ class Test1 {
 		ls.add(5);
 
 		PrettyPrint.println(ls);
-		PrettyPrint.println(ls, new PrettyConfig('-', " | ", 'v', '^', " <", "> "));
+		PrettyPrint.println(ls,true, new PrettyConfig('-', " | ", 'v', '^', " <", "> "));
 	}
 
 }

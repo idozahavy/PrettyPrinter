@@ -25,13 +25,13 @@ public class PrettyFieldString extends PrettyString {
 	}
 
 	@Override
-	public int getRowCount(PrettyConfig config) {
-		return 1 + value.getRowCount(config);
+	public int getRowCount() {
+		return 1 + value.getRowCount();
 	}
 
 	@Override
 	public String toString(PrettyConfig config) {
-		throw new UnsupportedOperationException("No toString method implementation for PrettyFieldString object");
+		return header + "\r\n" + value.toString(config);
 	}
 
 	@Override

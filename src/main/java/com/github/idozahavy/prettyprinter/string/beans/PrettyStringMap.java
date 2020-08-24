@@ -1,6 +1,7 @@
 package com.github.idozahavy.prettyprinter.string.beans;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.github.idozahavy.prettyprinter.config.PrettyConfig;
@@ -25,6 +26,10 @@ public class PrettyStringMap extends PrettyString {
 		rows.add(prettyString);
 	}
 
+	public List<PrettyString> getRows() {
+		return rows;
+	}
+
 	public static String middlePadSpace(String str, int length) {
 		while (str.length() <= length - 2) {
 			str = " " + str + " ";
@@ -37,7 +42,7 @@ public class PrettyStringMap extends PrettyString {
 
 	@Override
 	public String toString(PrettyConfig config) {
-		int rowCount = this.getRowCount(config);
+		int rowCount = this.getRowCount();
 		String string = "";
 		for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
 			int rowHeight = this.getRowHeight(rowIndex, config);
@@ -54,7 +59,7 @@ public class PrettyStringMap extends PrettyString {
 	@Override
 	public int getWidth(PrettyConfig config) {
 		int maxWidth = -1;
-		for (int i = 0; i < this.getRowCount(config); i++) {
+		for (int i = 0; i < this.getRowCount(); i++) {
 			int lineWidth = 0;
 			for (PrettyString prettyString : rows) {
 				lineWidth += prettyString.getWidth(config) + config.getItemSep().length();
@@ -65,17 +70,17 @@ public class PrettyStringMap extends PrettyString {
 	}
 
 	@Override
-	public int getRowCount(PrettyConfig config) {
+	public int getRowCount() {
 		int rowCount = -1;
 		for (PrettyString prettyString : rows) {
-			rowCount = Math.max(rowCount, prettyString.getRowCount(config));
+			rowCount = Math.max(rowCount, prettyString.getRowCount());
 		}
 		return rowCount;
 	}
 
 	@Override
 	public String getRowLine(int row, int line, PrettyConfig config) {
-		if (row == this.getRowCount(config) - 1) {
+		if (row == this.getRowCount() - 1) {
 			if (line == this.getRowHeight(row, config) - 1) {
 				return config.getBottomEdge().repeat(this.getWidth(config));
 			}
@@ -102,7 +107,7 @@ public class PrettyStringMap extends PrettyString {
 		for (PrettyString prettyString : rows) {
 			maxLineHeight = Math.max(maxLineHeight, prettyString.getRowHeight(row, config));
 		}
-		maxLineHeight += ((row == 0) ? 1 : 0) + ((row == this.getRowCount(config) - 1) ? 1 : 0);
+		maxLineHeight += ((row == 0) ? 1 : 0) + ((row == this.getRowCount() - 1) ? 1 : 0);
 		return maxLineHeight;
 	}
 
@@ -122,4 +127,10 @@ public class PrettyStringMap extends PrettyString {
 		string = string.substring(0, string.length() - config.getItemSep().length());
 		return string + config.getRightEdge();
 	}
+
+	@Override
+	public Iterator<PrettyString> iterator() {
+		return this.rows.iterator();
+	}
+
 }
