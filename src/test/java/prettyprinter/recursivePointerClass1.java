@@ -12,13 +12,6 @@ public class recursivePointerClass1 {
 		r1.recursive = r2;
 		r2.recursive = r1;
 		
-		try {
 		Pretty.println(r1);
-		}
-		catch (RuntimeException e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println("End");
-		
 	}
 }

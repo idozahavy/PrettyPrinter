@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PrettyValueCensored {
-	public String replaceBy() default "[Censored]";
+	public static String value = "[Censored]";
 }

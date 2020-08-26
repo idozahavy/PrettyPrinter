@@ -1,19 +1,13 @@
 package prettyprinter;
 
-class TestClass {
-	@SuppressWarnings("unused")
-	private String aString;
-	@SuppressWarnings("unused")
-	private int bInt;
-	@SuppressWarnings("unused")
-	private boolean cBool;
-	@SuppressWarnings("unused")
-	private double dDouble;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-	public TestClass(String aString, int bInt, boolean cBool, double dDouble) {
-		this.aString = aString;
-		this.bInt = bInt;
-		this.cBool = cBool;
-		this.dDouble = dDouble;
-	}
+@AllArgsConstructor
+@Data
+class TestClass {
+	private String aString;
+	private int bInt;
+	private boolean cBool;
+	private double dDouble;
 }

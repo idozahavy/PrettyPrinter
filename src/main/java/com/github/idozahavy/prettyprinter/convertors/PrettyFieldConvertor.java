@@ -33,8 +33,7 @@ public class PrettyFieldConvertor {
 			return null;
 		}
 		if (field.isAnnotationPresent(PrettyValueCensored.class)) {
-			PrettyValueCensored valueCensoredAnno = field.getAnnotation(PrettyValueCensored.class);
-			return new AString(valueCensoredAnno.replaceBy());
+			return new AString(PrettyValueCensored.value);
 		}
 
 		if (Modifier.isStatic(field.getModifiers())) {
