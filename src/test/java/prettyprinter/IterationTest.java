@@ -3,9 +3,10 @@ package prettyprinter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.idozahavy.prettyprinter.convertors.PrettyConvertor;
 import com.github.idozahavy.prettyprinter.config.PrettyAccessor;
-import com.github.idozahavy.prettyprinter.core.PrettyPrint;
-import com.github.idozahavy.prettyprinter.string.beans.PrettyString;
+import com.github.idozahavy.prettyprinter.config.PrettyConvertorConfig;
+import com.github.idozahavy.prettyprinter.beans.PrettyString;
 
 public class IterationTest {
 
@@ -15,17 +16,18 @@ public class IterationTest {
 		ints.add(2);
 		ints.add(5);
 		ints.add(453);
-		
-		PrettyString str = PrettyPrint.toPrettyStrings(ints, PrettyAccessor.Public, false);
+
+		PrettyString str = PrettyConvertor.convert(ints, PrettyConvertorConfig.defaultConfig);
 		for (PrettyString prettyString : str) {
 			System.out.println(prettyString);
 		}
-		
-		str = PrettyPrint.toPrettyStrings(new TestClass3(4, new TestClass2(new TestClass("blop", 123, false, 444.11), 5)), PrettyAccessor.Private, true);
+
+		str = PrettyConvertor.convert(new TestClass3(4, new TestClass2(new TestClass("blop", 123, false, 444.11), 5)),
+				new PrettyConvertorConfig(PrettyAccessor.Private));
 		for (PrettyString prettyString : str) {
 			System.out.println(prettyString);
 		}
-		
+
 	}
 
 }

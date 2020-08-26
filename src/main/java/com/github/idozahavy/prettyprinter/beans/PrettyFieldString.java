@@ -1,6 +1,6 @@
-package com.github.idozahavy.prettyprinter.string.beans;
+package com.github.idozahavy.prettyprinter.beans;
 
-import com.github.idozahavy.prettyprinter.config.PrettyConfig;
+import com.github.idozahavy.prettyprinter.config.PrettyPrinterConfig;
 
 public class PrettyFieldString extends PrettyString {
 	private String header;
@@ -20,7 +20,7 @@ public class PrettyFieldString extends PrettyString {
 	}
 
 	@Override
-	public int getWidth(PrettyConfig config) {
+	public int getWidth(PrettyPrinterConfig config) {
 		return Math.max(header.length(), value.getWidth(config));
 	}
 
@@ -30,12 +30,12 @@ public class PrettyFieldString extends PrettyString {
 	}
 
 	@Override
-	public String toString(PrettyConfig config) {
+	public String toString(PrettyPrinterConfig config) {
 		return header + "\r\n" + value.toString(config);
 	}
 
 	@Override
-	public int getRowHeight(int row, PrettyConfig config) {
+	public int getRowHeight(int row, PrettyPrinterConfig config) {
 		if (row == 0) {
 			return 1;
 		}
@@ -43,7 +43,7 @@ public class PrettyFieldString extends PrettyString {
 	}
 
 	@Override
-	public String getRowLine(int row, int line, PrettyConfig config) {
+	public String getRowLine(int row, int line, PrettyPrinterConfig config) {
 		if (row == 0) {
 			return line == 0 ? header : "";
 		}
@@ -51,7 +51,7 @@ public class PrettyFieldString extends PrettyString {
 	}
 
 	@Override
-	public String getRowSeperator(int row, PrettyConfig config) {
+	public String getRowSeperator(int row, PrettyPrinterConfig config) {
 		if (row == 0) {
 			return config.getRowSep().repeat(getWidth(config));
 		}

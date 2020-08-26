@@ -1,7 +1,11 @@
 package com.github.idozahavy.prettyprinter.config;
 
-public class PrettyConfig {
-	public static final PrettyConfig defaultConfig = new PrettyConfig('-', " | ", '*', '*', " *", "* ");
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+public class PrettyPrinterConfig {
+	public static PrettyPrinterConfig defaultConfig = new PrettyPrinterConfig('-', " | ", '*', '*', " *", "* ", false);
 	
 	private char rowSepChar;
 	private String itemSepStr;
@@ -9,16 +13,8 @@ public class PrettyConfig {
 	private char bottomEdgeChar;
 	private String rightEdgeStr;
 	private String leftEdgeStr;
-
-	public PrettyConfig(char rowSepChar, String itemSepStr, char topEdgeChar, char bottomEdgeChar, String rightEdgeStr,
-			String leftEdgeStr) {
-		this.rowSepChar = rowSepChar;
-		this.itemSepStr = itemSepStr;
-		this.topEdgeChar = topEdgeChar;
-		this.bottomEdgeChar = bottomEdgeChar;
-		this.rightEdgeStr = rightEdgeStr;
-		this.leftEdgeStr = leftEdgeStr;
-	}
+	@Getter
+	private boolean rowSeperatorAll;
 
 	public String getRowSep() {
 		return String.valueOf(rowSepChar);
