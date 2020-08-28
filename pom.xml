@@ -6,6 +6,28 @@
 	<groupId>com.github.idozahavy</groupId>
 	<artifactId>prettyprinter</artifactId>
 	<version>0.1.0</version>
+	<packaging>jar</packaging>
+
+	<name>Pretty Printer</name>
+	<description>Classes that gets and prints class attributes</description>
+	<url>https://github.com/idozahavy/PrettyPrinter</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Ido Zahavy</name>
+			<email>idozahavy@gmail.com</email>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/idozahavy/PrettyPrinter</organizationUrl>
+		</developer>
+	</developers>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -15,4 +37,76 @@
 		</dependency>
 	</dependencies>
 
+	<properties>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.release>11</maven.compiler.release>
+	</properties>
+
+
+	<scm>
+		<connection>scm:git:git://github.com/idozahavy/PrettyPrinter.git</connection>
+		<developerConnection>scm:git:ssh://github.com:idozahavy/PrettyPrinter.git</developerConnection>
+		<url>http://github.com/idozahavy/PrettyPrinter/tree/master</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<detectJavaApiLink>false</detectJavaApiLink>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
