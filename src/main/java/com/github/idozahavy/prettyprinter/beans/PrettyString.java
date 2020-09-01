@@ -25,7 +25,7 @@ public abstract class PrettyString implements Iterable<PrettyString> {
 	
 	@Override
 	public Iterator<PrettyString> iterator() {
-		PrettyString obj = this;
+		final PrettyString obj = this;
 		return new Iterator<PrettyString>() {
 			
 			private boolean canNext = true;
@@ -41,5 +41,15 @@ public abstract class PrettyString implements Iterable<PrettyString> {
 				return canNext;
 			}
 		};
+	}
+	
+	protected static String middlePadSpace(String str, int length) {
+		while (str.length() <= length - 2) {
+			str = " " + str + " ";
+		}
+		if (str.length() < length) {
+			str += " ";
+		}
+		return str;
 	}
 }

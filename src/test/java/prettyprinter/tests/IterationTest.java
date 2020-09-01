@@ -1,9 +1,14 @@
-package prettyprinter;
+package prettyprinter.tests;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.github.idozahavy.prettyprinter.convertors.PrettyConvertor;
+
+import prettyprinter.tests.beans.TestClass;
+import prettyprinter.tests.beans.TestClass2;
+import prettyprinter.tests.beans.TestClass3;
+
 import com.github.idozahavy.prettyprinter.config.PrettyAccessor;
 import com.github.idozahavy.prettyprinter.config.PrettyConvertorConfig;
 import com.github.idozahavy.prettyprinter.beans.PrettyString;

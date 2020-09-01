@@ -7,37 +7,27 @@ import java.util.List;
 import com.github.idozahavy.prettyprinter.config.PrettyPrinterConfig;
 
 public class PrettyStringMap extends PrettyString {
-	private List<PrettyString> rows;
+	private List<PrettyString> columns;
 
 	public PrettyStringMap() {
-		rows = new ArrayList<>();
+		columns = new ArrayList<>();
 	}
 
 	public PrettyStringMap(String str) {
-		rows = new ArrayList<>();
-		rows.add(new AString(str));
+		columns = new ArrayList<>();
+		columns.add(new AString(str));
 	}
 
 	public PrettyStringMap(List<PrettyString> rows) {
-		this.rows = rows;
+		this.columns = rows;
 	}
 
 	public void add(PrettyString prettyString) {
-		rows.add(prettyString);
+		columns.add(prettyString);
 	}
 
 	public List<PrettyString> getRows() {
-		return rows;
-	}
-
-	public static String middlePadSpace(String str, int length) {
-		while (str.length() <= length - 2) {
-			str = " " + str + " ";
-		}
-		if (str.length() < length) {
-			str += " ";
-		}
-		return str;
+		return columns;
 	}
 
 	@Override
@@ -64,7 +54,7 @@ public class PrettyStringMap extends PrettyString {
 		int maxWidth = -1;
 		for (int i = 0; i < this.getRowCount(); i++) {
 			int lineWidth = 0;
-			for (PrettyString prettyString : rows) {
+			for (PrettyString prettyString : columns) {
 				lineWidth += prettyString.getWidth(config) + config.getItemSep().length();
 			}
 			maxWidth = Math.max(maxWidth, lineWidth - config.getItemSep().length());
@@ -75,7 +65,7 @@ public class PrettyStringMap extends PrettyString {
 	@Override
 	public int getRowCount() {
 		int rowCount = -1;
-		for (PrettyString prettyString : rows) {
+		for (PrettyString prettyString : columns) {
 			rowCount = Math.max(rowCount, prettyString.getRowCount());
 		}
 		return rowCount;
@@ -98,7 +88,7 @@ public class PrettyStringMap extends PrettyString {
 			line -= 1;
 		}
 		String string = "";
-		for (PrettyString prettyString : rows) {
+		for (PrettyString prettyString : columns) {
 			String strAddition = prettyString.getRowLine(row, line, config);
 			strAddition = middlePadSpace(strAddition, prettyString.getWidth(config));
 			string += strAddition + config.getItemSep();
@@ -109,24 +99,24 @@ public class PrettyStringMap extends PrettyString {
 
 	@Override
 	public int getRowHeight(int row, PrettyPrinterConfig config) {
-		int maxLineHeight = 0;
-		for (PrettyString prettyString : rows) {
-			maxLineHeight = Math.max(maxLineHeight, prettyString.getRowHeight(row, config));
+		int rowHeight = 0;
+		for (PrettyString prettyString : columns) {
+			rowHeight = Math.max(rowHeight, prettyString.getRowHeight(row, config));
 		}
-		maxLineHeight += ((row == 0) ? 1 : 0) + ((row == this.getRowCount() - 1) ? 1 : 0);
-		return maxLineHeight;
+		rowHeight += ((row == 0) ? 1 : 0) + ((row == this.getRowCount() - 1) ? 1 : 0);
+		return rowHeight;
 	}
 
 	@Override
 	public String getRowSeperator(int row, PrettyPrinterConfig config) {
 		if (config.isRowSeperatorAll() && row == 0) {
-			return "" + config.getLeftEdge()
+			return config.getLeftEdge()
 					+ config.getRowSep()
 							.repeat(getWidth(config) - config.getLeftEdge().length() - config.getRightEdge().length())
 					+ config.getRightEdge();
 		}
-		String string = "" + config.getLeftEdge();
-		for (PrettyString prettyString : rows) {
+		String string = config.getLeftEdge();
+		for (PrettyString prettyString : columns) {
 			string += middlePadSpace(prettyString.getRowSeperator(row, config), prettyString.getWidth(config))
 					+ config.getItemSep();
 		}
@@ -136,7 +126,7 @@ public class PrettyStringMap extends PrettyString {
 
 	@Override
 	public Iterator<PrettyString> iterator() {
-		return this.rows.iterator();
+		return this.columns.iterator();
 	}
 
 }

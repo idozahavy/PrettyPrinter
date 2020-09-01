@@ -43,8 +43,12 @@ public class PrettyFieldConvertor {
 				return null;
 			}
 		}
-
-		if (field.canAccess(object) == false) {
+		
+		if (Modifier.isPublic(field.getModifiers())) {
+			field.setAccessible(true);
+		}
+		
+		if (Modifier.isPrivate(field.getModifiers())) {
 			if (convertorConfig.getAccessor() == PrettyAccessor.Private) {
 				field.setAccessible(true);
 			} else {

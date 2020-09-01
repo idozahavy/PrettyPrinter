@@ -1,4 +1,4 @@
-package prettyprinter;
+package prettyprinter.tests.recursive;
 
 import com.github.idozahavy.prettyprinter.core.Pretty;
 

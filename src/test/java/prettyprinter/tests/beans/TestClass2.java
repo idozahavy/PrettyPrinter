@@ -1,6 +1,6 @@
-package prettyprinter;
+package prettyprinter.tests.beans;
 
-class TestClass2 {
+public class TestClass2 {
 	@SuppressWarnings("unused")
 	private TestClass class1;
 	public int aInt;
