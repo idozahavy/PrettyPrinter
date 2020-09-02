@@ -1,15 +1,25 @@
 package com.github.idozahavy.prettyprinter.beans2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public abstract class StringCollection implements PrettyString2 {
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringCollection;
 
-	protected List<PrettyString2> items;
+import lombok.Getter;
+import lombok.Setter;
 
-	public void add(PrettyString2 prettyString) {
+@Getter
+public abstract class StringCollection implements IStringCollection {
+
+	@Setter
+	protected String name;
+	protected List<IPrettyString> items;
+
+	public void add(IPrettyString prettyString) {
 		if (items == null) {
-			items = new ArrayList<PrettyString2>();
+			items = new ArrayList<IPrettyString>();
 		}
 		items.add(prettyString);
 	}
@@ -17,9 +27,9 @@ public abstract class StringCollection implements PrettyString2 {
 	public int getItemCount() {
 		return items != null ? items.size() : -1;
 	}
-	
-	public List<PrettyString2> getItems() {
-		return new ArrayList<PrettyString2>(items);
-	}
 
+	@Override
+	public Iterator<IPrettyString> iterator() {
+		return items.iterator();
+	}
 }

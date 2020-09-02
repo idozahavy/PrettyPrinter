@@ -1,6 +1,15 @@
 package com.github.idozahavy.prettyprinter.beans2;
 
-public class SimpleString implements PrettyString2 {
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringHorizontalCollection;
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringVerticalCollection;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
+public class SimpleString implements IPrettyString {
 
 	private String value;
 
@@ -20,8 +29,8 @@ public class SimpleString implements PrettyString2 {
 	}
 
 	@Override
-	public StringCollection getRow(int row) {
-		return row == 0 ? new OneStringCollection(this) : null;
+	public IStringHorizontalCollection getRow(int row) {
+		return row == 0 ? new OneStringCollection(this) : new EmptyStringCollection();
 	}
 
 	@Override
@@ -30,7 +39,7 @@ public class SimpleString implements PrettyString2 {
 	}
 
 	@Override
-	public StringCollection getColumn(int column) {
-		return column == 0 ? new OneStringCollection(this) : null;
+	public IStringVerticalCollection getColumn(int column) {
+		return column == 0 ? new OneStringCollection(this) : new EmptyStringCollection();
 	}
 }

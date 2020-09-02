@@ -2,11 +2,33 @@ package com.github.idozahavy.prettyprinter.beans2;
 
 import java.util.ArrayList;
 
-public class OneStringCollection extends StringCollection {
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringHorizontalCollection;
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringVerticalCollection;
 
-	public OneStringCollection(PrettyString2 prtStr) {
-		items = new ArrayList<PrettyString2>();
+public class OneStringCollection extends StringCollection
+		implements IStringHorizontalCollection, IStringVerticalCollection {
+
+	public OneStringCollection(IPrettyString prtStr) {
+		items = new ArrayList<>();
 		items.add(prtStr);
+	}
+
+	public String getValue() {
+		if (getItemCount() == 1) {
+			SimpleString simpleString = (SimpleString) items.get(0);
+			if (simpleString != null) {
+				return ((SimpleString) items.get(0)).getValue();
+			}
+		}
+		return "";
+	}
+
+	@Override
+	public void add(IPrettyString prettyString) {
+		if (getItemCount() == 0) {
+			super.add(prettyString);
+		}
 	}
 
 	@Override
@@ -25,7 +47,7 @@ public class OneStringCollection extends StringCollection {
 	}
 
 	@Override
-	public StringCollection getRow(int row) {
+	public IStringHorizontalCollection getRow(int row) {
 		return this;
 	}
 
@@ -35,7 +57,7 @@ public class OneStringCollection extends StringCollection {
 	}
 
 	@Override
-	public StringCollection getColumn(int column) {
+	public IStringVerticalCollection getColumn(int column) {
 		return this;
 	}
 }

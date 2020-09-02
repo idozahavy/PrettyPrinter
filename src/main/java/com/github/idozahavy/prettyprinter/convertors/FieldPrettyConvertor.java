@@ -2,23 +2,21 @@ package com.github.idozahavy.prettyprinter.convertors;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.List;
 
 import com.github.idozahavy.prettyprinter.annotations.*;
-import com.github.idozahavy.prettyprinter.config.*;
-import com.github.idozahavy.prettyprinter.beans.*;
+import com.github.idozahavy.prettyprinter.beans2.SimpleString;
+import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
 
-public class PrettyFieldConvertor {
-	public static PrettyFieldString fieldToPrettyString(Field field, Object object,
-			PrettyConvertorConfig convertorConfig, List<Object> objectList) {
-		String fieldName = getFieldHeader(field);
-		PrettyString fieldValue = getFieldValue(field, object, convertorConfig, objectList);
-		if (fieldValue == null) {
+public class FieldPrettyConvertor {
+	public static IPrettyString convert(Field field, Object object, PrettyConvertorConfig convertorConfig) {
+		IPrettyString fieldPrettyString = getFieldValue(field, object, convertorConfig);
+		if (fieldPrettyString == null) {
 			return null;
 		}
-		return new PrettyFieldString(fieldName, fieldValue);
+		return fieldPrettyString;
 	}
 
+	@SuppressWarnings("unused")
 	private static String getFieldHeader(Field field) {
 		if (field.isAnnotationPresent(PrettyHeader.class)) {
 			PrettyHeader headerAnno = field.getDeclaredAnnotation(PrettyHeader.class);
@@ -27,29 +25,29 @@ public class PrettyFieldConvertor {
 		return field.getName();
 	}
 
-	private static PrettyString getFieldValue(Field field, Object object, PrettyConvertorConfig convertorConfig,List<Object> objectList) {
+	private static IPrettyString getFieldValue(Field field, Object object, PrettyConvertorConfig config) {
 
 		if (field.isAnnotationPresent(PrettyCensored.class)) {
 			return null;
 		}
 		if (field.isAnnotationPresent(PrettyValueCensored.class)) {
-			return new AString(PrettyValueCensored.value);
+			return new SimpleString(PrettyValueCensored.value);
 		}
 
 		if (Modifier.isStatic(field.getModifiers())) {
-			if (convertorConfig.isRetrieveStaticFields()) {
+			if (config.has(Modifier.STATIC)) {
 				object = null;
 			} else {
 				return null;
 			}
 		}
-		
+
 		if (Modifier.isPublic(field.getModifiers())) {
 			field.setAccessible(true);
 		}
-		
+		// TODO make a better way to check modifiers
 		if (Modifier.isPrivate(field.getModifiers())) {
-			if (convertorConfig.getAccessor() == PrettyAccessor.Private) {
+			if (config.has(Modifier.PRIVATE)) {
 				field.setAccessible(true);
 			} else {
 				return null;
@@ -57,9 +55,10 @@ public class PrettyFieldConvertor {
 		}
 
 		try {
-			return PrettyConvertor.convert(field.get(object), convertorConfig, objectList);
+			// TODO need to create a collection with field name
+			return ObjectPrettyConvertor.convert(field.get(object), config);
 		} catch (IllegalAccessException | IllegalArgumentException e) {
-			return new AString("[Inaccessable Field]");
+			return new SimpleString("[Inaccessable Field]");
 		}
 	}
 }
