@@ -28,6 +28,7 @@ public class Test1 {
 		IPrettyString prettyLs = ObjectPrettyConvertor.convert(ls, convertorConfig);
 		
 		printer.println(prettyLs);
+		// TODO add to printer boxes for each collectionS
 
 	}
 
