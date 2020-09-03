@@ -1,6 +1,9 @@
 package com.github.idozahavy.prettyprinter.core;
 
-public class Pretty {
+import com.github.idozahavy.prettyprinter.printers.PrettyPrinter;
+
+//TODO make final implementation
+public class Pretty {//extends PrettyPrinter{
 
 //	public static void println(Object object) {
 //		printer.println(ObjectPrettyConvertor.convert(object, PrettyConvertorConfig.defaultConfig),

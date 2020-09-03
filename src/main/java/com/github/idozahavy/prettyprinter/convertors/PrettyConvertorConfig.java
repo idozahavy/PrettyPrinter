@@ -1,67 +1,59 @@
 package com.github.idozahavy.prettyprinter.convertors;
 
+import java.util.Collection;
 import java.util.HashSet;
 
 import com.github.idozahavy.prettyprinter.config.InvokePermit;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class PrettyConvertorConfig implements Cloneable {
 
 	protected HashSet<Integer> fieldModifiers;
 	protected HashSet<InvokePermit> invokePermits;
 	protected HashSet<Object> convertedObjects;
 
-	public PrettyConvertorConfig(HashSet<Integer> fieldModifiers, HashSet<InvokePermit> invokePermits,
-			HashSet<Object> convertedObjects) {
+	public PrettyConvertorConfig() {
 		this.fieldModifiers = new HashSet<>();
 		this.invokePermits = new HashSet<>();
 		this.convertedObjects = new HashSet<>();
+	}
 
+	public PrettyConvertorConfig(Collection<Integer> fieldModifiers, Collection<InvokePermit> invokePermits,
+			Collection<Object> convertedObjects) {
+		this();
 		this.fieldModifiers.addAll(fieldModifiers);
 		this.invokePermits.addAll(invokePermits);
 		this.convertedObjects.addAll(convertedObjects);
 	}
 
-	public boolean has(Integer modifier) {
-		if (fieldModifiers != null) {
-			return fieldModifiers.contains(modifier);
-		}
-		return false;
+	public boolean hasModifier(Integer modifier) {
+		return fieldModifiers.contains(modifier);
 	}
 
-	public boolean has(InvokePermit permit) {
-		if (invokePermits != null) {
-			return invokePermits.contains(permit);
-		}
-		return false;
+	public void addModifier(Integer modifier) {
+		fieldModifiers.add(modifier);
+	}
+
+	public boolean hasPermit(InvokePermit permit) {
+		return invokePermits.contains(permit);
+	}
+
+	public void addPermit(InvokePermit permit) {
+		invokePermits.add(permit);
 	}
 
 	public boolean hasConverted(Object object) {
-		if (convertedObjects != null) {
-			return convertedObjects.contains(object);
-		} else {
-			convertedObjects = new HashSet<>();
-		}
-		return false;
+		return convertedObjects.contains(object);
 	}
 
 	public void addConverted(Object object) {
-		if (convertedObjects == null) {
-			convertedObjects = new HashSet<>();
-		}
 		convertedObjects.add(object);
 	}
 
 	public void resetConverted() {
-		if (convertedObjects != null) {
-			convertedObjects.clear();
-		} else {
-			convertedObjects = new HashSet<>();
-		}
+		convertedObjects.clear();
 	}
 
 	public PrettyConvertorConfig clone() {

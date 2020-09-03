@@ -1,27 +1,23 @@
-package com.github.idozahavy.prettyprinter.beans2;
+package com.github.idozahavy.prettyprinter.beans;
 
 import java.util.ArrayList;
 
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringHorizontalCollection;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringVerticalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringHorizontalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringVerticalCollection;
 
 public class OneStringCollection extends StringCollection
 		implements IStringHorizontalCollection, IStringVerticalCollection {
-
-	public OneStringCollection(IPrettyString prtStr) {
-		items = new ArrayList<>();
-		items.add(prtStr);
+	
+	public OneStringCollection(Object object) {
+		super(object);
+		throw new RuntimeException("no clazz constructor to OneStringCollection");
 	}
 
-	public String getValue() {
-		if (getItemCount() == 1) {
-			SimpleString simpleString = (SimpleString) items.get(0);
-			if (simpleString != null) {
-				return ((SimpleString) items.get(0)).getValue();
-			}
-		}
-		return "";
+	public OneStringCollection(IPrettyString prtStr) {
+		super(String.class);
+		items = new ArrayList<>();
+		items.add(prtStr);
 	}
 
 	@Override
@@ -59,5 +55,10 @@ public class OneStringCollection extends StringCollection
 	@Override
 	public IStringVerticalCollection getColumn(int column) {
 		return this;
+	}
+
+	@Override
+	public SimpleString getFirst() {
+		return (SimpleString)items.get(0);
 	}
 }

@@ -1,12 +1,12 @@
 package prettyprinter.tests.stringcollection;
 
-import com.github.idozahavy.prettyprinter.beans2.OneStringCollection;
-import com.github.idozahavy.prettyprinter.beans2.SimpleString;
-import com.github.idozahavy.prettyprinter.beans2.StringCollection;
-import com.github.idozahavy.prettyprinter.beans2.StringHorizontalCollection;
-import com.github.idozahavy.prettyprinter.beans2.StringVerticalCollection;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringCollection;
+import com.github.idozahavy.prettyprinter.beans.OneStringCollection;
+import com.github.idozahavy.prettyprinter.beans.SimpleString;
+import com.github.idozahavy.prettyprinter.beans.StringCollection;
+import com.github.idozahavy.prettyprinter.beans.StringHorizontalCollection;
+import com.github.idozahavy.prettyprinter.beans.StringVerticalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringCollection;
 
 public class Test1 {
 
@@ -52,10 +52,10 @@ public class Test1 {
 	private static void printPrettyString(IPrettyString prtStr) {
 		if (prtStr instanceof StringCollection) {
 			StringCollection collection = (StringCollection) prtStr;
-			System.out.println("-----" + collection.getName() + "-----");
+			System.out.println("-----" + collection.getObject().toString() + "-----");
 			for (IPrettyString prettyString : collection) {
 				if (prettyString instanceof OneStringCollection) {
-					System.out.println(((OneStringCollection) prettyString).getValue());
+					System.out.println(((OneStringCollection) prettyString).getFirst().getValue());
 				} else if (prettyString instanceof StringCollection) {
 					printPrettyString((StringCollection) prettyString);
 				} else if (prettyString instanceof SimpleString) {

@@ -1,8 +1,8 @@
-package com.github.idozahavy.prettyprinter.beans2;
+package com.github.idozahavy.prettyprinter.beans;
 
 class EmptyStringCollection extends OneStringCollection {
 
 	public EmptyStringCollection() {
-		super(null);
+		super(new SimpleString(""));
 	}
 }

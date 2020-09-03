@@ -1,8 +1,8 @@
-package com.github.idozahavy.prettyprinter.beans2;
+package com.github.idozahavy.prettyprinter.beans;
 
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringHorizontalCollection;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringVerticalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringHorizontalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringVerticalCollection;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

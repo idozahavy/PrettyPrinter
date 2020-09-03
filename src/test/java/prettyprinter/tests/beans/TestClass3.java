@@ -2,7 +2,7 @@ package prettyprinter.tests.beans;
 
 import com.github.idozahavy.prettyprinter.annotations.PrettyCensored;
 import com.github.idozahavy.prettyprinter.annotations.PrettyHeader;
-import com.github.idozahavy.prettyprinter.annotations.PrettyValueCensored;
+import com.github.idozahavy.prettyprinter.annotations.PrettyValue;
 
 import lombok.Data;
 

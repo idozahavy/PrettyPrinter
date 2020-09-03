@@ -1,17 +1,19 @@
-package com.github.idozahavy.prettyprinter.beans2;
+package com.github.idozahavy.prettyprinter.beans;
 
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringHorizontalCollection;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IStringVerticalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringHorizontalCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IStringVerticalCollection;
 
 public class StringHorizontalCollection extends StringCollection implements IStringHorizontalCollection {
 
-	public StringHorizontalCollection(String name) {
-		this.name = name;
+	public StringHorizontalCollection(Object object) {
+		super(object);
 	}
 
 	@Override
 	public int getWidth() {
+		if (items==null)
+			return 0;
 		int width = 0;
 		for (IPrettyString prettyString : items) {
 			width += prettyString.getWidth();
@@ -21,6 +23,8 @@ public class StringHorizontalCollection extends StringCollection implements IStr
 
 	@Override
 	public int getHeight() {
+		if (items==null)
+			return 0;
 		int height = 0;
 		for (IPrettyString prettyString : items) {
 			height = Math.max(prettyString.getHeight(), height);
@@ -30,6 +34,8 @@ public class StringHorizontalCollection extends StringCollection implements IStr
 
 	@Override
 	public int getRowCount() {
+		if (items==null)
+			return 0;
 		int rowCount = 0;
 		for (IPrettyString prettyString : items) {
 			rowCount = Math.max(prettyString.getRowCount(), rowCount);
@@ -39,7 +45,9 @@ public class StringHorizontalCollection extends StringCollection implements IStr
 
 	@Override
 	public IStringHorizontalCollection getRow(int row) {
-		StringHorizontalCollection collection = new StringHorizontalCollection(name);
+		StringHorizontalCollection collection = new StringHorizontalCollection(object);
+		if (items==null)
+			return collection;
 		for (IPrettyString prettyString : items) {
 			collection.add(prettyString.getRow(row));
 		}
@@ -48,6 +56,8 @@ public class StringHorizontalCollection extends StringCollection implements IStr
 
 	@Override
 	public int getColumnCount() {
+		if (items==null)
+			return 0;
 		int columnCount = 0;
 		for (IPrettyString prettyString : items) {
 			columnCount += prettyString.getColumnCount();
@@ -58,10 +68,12 @@ public class StringHorizontalCollection extends StringCollection implements IStr
 	@Override
 	public IStringVerticalCollection getColumn(int column) {
 		// TOCHECK Need To Check
+		if (items==null)
+			return new EmptyStringCollection();
 		int columnsPassed = 0;
 		for (IPrettyString prettyString : items) {
 			if (columnsPassed + prettyString.getColumnCount() > column) {
-				StringVerticalCollection collection = new StringVerticalCollection(name);
+				StringVerticalCollection collection = new StringVerticalCollection(object);
 				collection.add(prettyString.getColumn(column - columnsPassed));
 				return collection;
 			}

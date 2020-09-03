@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 
 import com.github.idozahavy.prettyprinter.convertors.factory.StringCollectionFactory;
 import com.github.idozahavy.prettyprinter.convertors.interfaces.IPrettyConvertor;
-import com.github.idozahavy.prettyprinter.beans2.StringCollection;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.StringCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
 
 public class ClassPrettyConvertor implements IPrettyConvertor<Object> {
 

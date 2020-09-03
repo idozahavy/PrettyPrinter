@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import com.github.idozahavy.prettyprinter.annotations.*;
-import com.github.idozahavy.prettyprinter.beans2.SimpleString;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.SimpleString;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
 
 public class FieldPrettyConvertor {
 	public static IPrettyString convert(Field field, Object object, PrettyConvertorConfig convertorConfig) {
@@ -16,6 +16,7 @@ public class FieldPrettyConvertor {
 		return fieldPrettyString;
 	}
 
+	//TODO use this
 	@SuppressWarnings("unused")
 	private static String getFieldHeader(Field field) {
 		if (field.isAnnotationPresent(PrettyHeader.class)) {
@@ -30,12 +31,12 @@ public class FieldPrettyConvertor {
 		if (field.isAnnotationPresent(PrettyCensored.class)) {
 			return null;
 		}
-		if (field.isAnnotationPresent(PrettyValueCensored.class)) {
-			return new SimpleString(PrettyValueCensored.value);
+		if (field.isAnnotationPresent(PrettyValue.class)) {
+			return new SimpleString(field.getAnnotation(PrettyValue.class).value());
 		}
 
 		if (Modifier.isStatic(field.getModifiers())) {
-			if (config.has(Modifier.STATIC)) {
+			if (config.hasModifier(Modifier.STATIC)) {
 				object = null;
 			} else {
 				return null;
@@ -47,7 +48,7 @@ public class FieldPrettyConvertor {
 		}
 		// TODO make a better way to check modifiers
 		if (Modifier.isPrivate(field.getModifiers())) {
-			if (config.has(Modifier.PRIVATE)) {
+			if (config.hasModifier(Modifier.PRIVATE)) {
 				field.setAccessible(true);
 			} else {
 				return null;

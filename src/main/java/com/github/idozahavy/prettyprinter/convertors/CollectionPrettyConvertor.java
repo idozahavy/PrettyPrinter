@@ -2,8 +2,8 @@ package com.github.idozahavy.prettyprinter.convertors;
 
 import java.util.Collection;
 
-import com.github.idozahavy.prettyprinter.beans2.StringCollection;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.StringCollection;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
 import com.github.idozahavy.prettyprinter.convertors.factory.StringCollectionFactory;
 
 public class CollectionPrettyConvertor extends PrettyConvertor<Collection<?>> {

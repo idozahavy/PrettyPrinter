@@ -1,4 +1,4 @@
-package com.github.idozahavy.prettyprinter.beans2.interfaces;
+package com.github.idozahavy.prettyprinter.beans.interfaces;
 
 public interface IStringVerticalCollection extends IStringCollection {
 

@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PrettyValueCensored {
-	public static String value = "[Censored]";
+public @interface PrettyValue {
+	public String value();
+	//TODO Check implementation on value either class name or field value
 }

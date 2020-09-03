@@ -2,8 +2,8 @@ package com.github.idozahavy.prettyprinter.convertors;
 
 import java.util.Collection;
 
-import com.github.idozahavy.prettyprinter.beans2.SimpleString;
-import com.github.idozahavy.prettyprinter.beans2.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.SimpleString;
+import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
 import com.github.idozahavy.prettyprinter.config.InvokePermit;
 import com.github.idozahavy.prettyprinter.convertors.PrettyConvertorUtils;
 
@@ -24,7 +24,7 @@ public final class ObjectPrettyConvertor extends PrettyConvertor<Object> {
 		Class<?> objectClass = object.getClass();
 
 		if (PrettyConvertorUtils.isPrimitive(objectClass)
-				|| (config.has(InvokePermit.ToString) && PrettyConvertorUtils.hasToString(objectClass))) {
+				|| (config.hasPermit(InvokePermit.ToString) && PrettyConvertorUtils.hasToString(objectClass))) {
 			return new SimpleString(object.toString());
 		}
 
