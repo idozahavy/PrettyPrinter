@@ -27,7 +27,7 @@ public class StringVerticalCollection extends StringCollection implements IStrin
 			return 0;
 		int width = 0;
 		for (IPrettyString prettyString : items) {
-			width += prettyString.getWidth();
+			width += prettyString.getHeight();
 		}
 		return width;
 	}
@@ -53,11 +53,18 @@ public class StringVerticalCollection extends StringCollection implements IStrin
 			if (rowsPassed + prettyString.getRowCount() > row) {
 				StringHorizontalCollection collection = new StringHorizontalCollection(object);
 				collection.add(prettyString.getRow(row - rowsPassed));
+				while (collection.getColumnCount()<this.getColumnCount()) {
+					collection.add(new SimpleString(""));
+				}
 				return collection;
 			}
 			rowsPassed += prettyString.getRowCount();
 		}
-		return new EmptyStringCollection();
+		StringHorizontalCollection emptyHorizontalCollection = new StringHorizontalCollection(null);
+		for (int i = 0; i < this.getColumnCount(); i++) {
+			emptyHorizontalCollection.add(new SimpleString(""));
+		}
+		return emptyHorizontalCollection;
 	}
 
 	@Override

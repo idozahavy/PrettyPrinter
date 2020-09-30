@@ -5,7 +5,6 @@ import java.util.Collection;
 import com.github.idozahavy.prettyprinter.beans.SimpleString;
 import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
 import com.github.idozahavy.prettyprinter.config.InvokePermit;
-import com.github.idozahavy.prettyprinter.convertors.PrettyConvertorUtils;
 
 public final class ObjectPrettyConvertor extends PrettyConvertor<Object> {
 

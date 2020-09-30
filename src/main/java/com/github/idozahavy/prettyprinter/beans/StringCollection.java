@@ -16,7 +16,7 @@ public abstract class StringCollection implements IStringCollection {
 	@Setter
 	protected Object object;
 	protected List<IPrettyString> items;
-	
+
 	public StringCollection(Object object) {
 		this.object = object;
 	}
@@ -31,15 +31,18 @@ public abstract class StringCollection implements IStringCollection {
 	public int getItemCount() {
 		return items != null ? items.size() : -1;
 	}
-	
+
+	public List<IPrettyString> getItems() {
+		return items;
+	}
+
 	@Override
 	public SimpleString getFirst() {
 		IPrettyString prettyString = items.get(0);
 		if (prettyString instanceof IStringCollection) {
-			return ((IStringCollection)prettyString).getFirst();
-					}
-		else if (prettyString instanceof SimpleString) {
-			return (SimpleString)prettyString;
+			return ((IStringCollection) prettyString).getFirst();
+		} else if (prettyString instanceof SimpleString) {
+			return (SimpleString) prettyString;
 		}
 		// if null - gets here
 		throw new RuntimeException("did not catch instance of first item");

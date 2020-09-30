@@ -25,5 +25,4 @@ public class PrettyPrinterUtils {
 	public static String repeat(char ch, int length) {
 		return String.valueOf(ch).repeat(length);
 	}
-	
 }

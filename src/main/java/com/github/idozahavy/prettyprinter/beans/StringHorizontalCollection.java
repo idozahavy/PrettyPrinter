@@ -75,10 +75,17 @@ public class StringHorizontalCollection extends StringCollection implements IStr
 			if (columnsPassed + prettyString.getColumnCount() > column) {
 				StringVerticalCollection collection = new StringVerticalCollection(object);
 				collection.add(prettyString.getColumn(column - columnsPassed));
+				while (collection.getRowCount()<this.getRowCount()) {
+					collection.add(new SimpleString(""));
+				}
 				return collection;
 			}
 			columnsPassed += prettyString.getColumnCount();
 		}
-		return new EmptyStringCollection();
+		StringVerticalCollection emptyVerticalCollection = new StringVerticalCollection(null);
+		for (int i = 0; i < this.getRowCount(); i++) {
+			emptyVerticalCollection.add(new SimpleString(""));
+		}
+		return emptyVerticalCollection;
 	}
 }
