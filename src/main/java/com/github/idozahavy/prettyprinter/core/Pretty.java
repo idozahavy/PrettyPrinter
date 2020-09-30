@@ -14,6 +14,12 @@ public class Pretty {
 		printer.println(convertor.convert(object));
 	}
 	
+	public static void printlnPrivates(Object object) {
+		PrettyConvertor convertor = new PrettyConvertor(new PrettyConvertorConfig(PrettyAccessor.Private, false, false)); 
+		PrettyPrinter printer = new PrettyPrinter(PrettyPrinterConfig.defaultConfig); 
+		printer.println(convertor.convert(object));
+	}
+	
 	public static void println(Object object, PrettyAccessor accessor) {
 		PrettyConvertor convertor = new PrettyConvertor(new PrettyConvertorConfig(accessor)); 
 		PrettyPrinter printer = new PrettyPrinter(PrettyPrinterConfig.defaultConfig); 

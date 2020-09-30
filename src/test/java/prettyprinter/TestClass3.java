@@ -1,6 +1,6 @@
 package prettyprinter;
 
-class TestClass3 {
+public class TestClass3 {
 
 	public static int blop = -1;
 	public int aBInt;
