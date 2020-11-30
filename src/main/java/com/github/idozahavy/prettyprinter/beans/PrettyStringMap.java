@@ -122,7 +122,7 @@ public class PrettyStringMap extends PrettyString {
 		if (config.isRowSeperatorAll() && row == 0) {
 			return "" + config.getLeftEdge()
 					+ config.getRowSep()
-							.repeat(getWidth(config) - config.getLeftEdge().length() - config.getRightEdge().length())
+					.repeat(getWidth(config) - config.getLeftEdge().length() - config.getRightEdge().length())
 					+ config.getRightEdge();
 		}
 		String string = "" + config.getLeftEdge();

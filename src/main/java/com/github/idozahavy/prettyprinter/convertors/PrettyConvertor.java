@@ -30,15 +30,19 @@ public class PrettyConvertor {
 		if (object == null) {
 			return new AString("[null]");
 		}
+		Class<?> objectClass = object.getClass();
+		
+		if (isPrimitive(objectClass) || (convertorConfig.isInvokeToString() && hasToString(objectClass))) {
+			return new AString(object.toString());
+		}
+		
 		if (objectList.contains(object)) {
 			return new AString("[Recursive] " + object.getClass().getName());
 		}
-		Class<?> objectClass = object.getClass();
+		
 		objectList.add(object);
 
-		if (isPrimitive(objectClass) || (convertorConfig.isInvokeToString() && hasToString(objectClass))) {
-			return new AString(object.toString());
-		} else if (objectClass.isArray()) {
+		if (objectClass.isArray()) {
 			return arrayToPrettyStrings(object, convertorConfig,objectList);
 		} else if (object instanceof Collection<?>) {
 			return collectionToPrettyStrings((Collection<?>) object, convertorConfig,objectList);

@@ -22,20 +22,20 @@ public abstract class PrettyString implements Iterable<PrettyString> {
 	public abstract int getRowHeight(int row, PrettyPrinterConfig config);
 
 	public abstract String getRowSeperator(int row, PrettyPrinterConfig config);
-	
+
 	@Override
 	public Iterator<PrettyString> iterator() {
 		PrettyString obj = this;
 		return new Iterator<PrettyString>() {
-			
+
 			private boolean canNext = true;
-			
+
 			@Override
 			public PrettyString next() {
 				canNext = false;
 				return obj;
 			}
-			
+
 			@Override
 			public boolean hasNext() {
 				return canNext;

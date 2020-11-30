@@ -5,7 +5,7 @@
 
 	<groupId>com.github.idozahavy</groupId>
 	<artifactId>prettyprinter</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.4</version>
 	<packaging>jar</packaging>
 
 	<name>Pretty Printer</name>
@@ -37,12 +37,12 @@
 		</dependency>
 	</dependencies>
 
+
 	<properties>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.release>11</maven.compiler.release>
 	</properties>
-
 
 	<scm>
 		<connection>scm:git:git://github.com/idozahavy/PrettyPrinter.git</connection>
@@ -67,12 +67,12 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				
-				<version>2.2.1</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
 						<goals>
-							<goal>jar-no-fork</goal>
+							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -80,7 +80,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>3.1.1</version>
 				<configuration>
 					<detectJavaApiLink>false</detectJavaApiLink>
 				</configuration>
