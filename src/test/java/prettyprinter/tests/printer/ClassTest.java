@@ -2,12 +2,12 @@ package prettyprinter.tests.printer;
 
 import java.lang.reflect.Modifier;
 
-import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.convertors.ObjectPrettyConvertor;
-import com.github.idozahavy.prettyprinter.convertors.PrettyConvertorConfig;
-import com.github.idozahavy.prettyprinter.printers.PrettyPrinter;
-import com.github.idozahavy.prettyprinter.printers.PrettyPrinterConfig;
-import com.github.idozahavy.prettyprinter.printers.PrettyStringPrinter;
+import com.github.idozahavy.prettyprinter.beans.ViObject;
+import com.github.idozahavy.prettyprinter.convertors.ObjectViConvertor;
+import com.github.idozahavy.prettyprinter.convertors.ViConvertorConfig;
+import com.github.idozahavy.prettyprinter.printers.ViPrinter;
+import com.github.idozahavy.prettyprinter.printers.ViPrinterConfig;
+import com.github.idozahavy.prettyprinter.printers.ViStringPrinter;
 
 import prettyprinter.tests.beans.TestClass;
 import prettyprinter.tests.beans.TestClass2;
@@ -15,20 +15,20 @@ import prettyprinter.tests.beans.TestClass2;
 public class ClassTest {
 
 	public static void main(String[] args) {
-		PrettyPrinterConfig printerConfig = new PrettyPrinterConfig();
+		ViPrinterConfig printerConfig = new ViPrinterConfig();
 		printerConfig.setItemSeperatorString(" | ");
 		printerConfig.setLeftString("* ");
 		printerConfig.setRightString(" *");
-		PrettyPrinter printer = new PrettyStringPrinter(printerConfig); 
+		ViPrinter printer = new ViStringPrinter(printerConfig); 
 		
 		TestClass cl1 = new TestClass("abc", 3.65, new int[] {4,2,6});
 		TestClass2 cl2 = new TestClass2(cl1,5);
 		
-		PrettyConvertorConfig convertorConfig = new PrettyConvertorConfig();
+		ViConvertorConfig convertorConfig = new ViConvertorConfig();
 		convertorConfig.addModifier(Modifier.PRIVATE);
-		IPrettyString prettyCl1 = ObjectPrettyConvertor.convert(cl1, convertorConfig);
+		ViObject prettyCl1 = ObjectViConvertor.convert(cl1, convertorConfig);
 		convertorConfig.resetConverted();
-		IPrettyString prettyCl2 = ObjectPrettyConvertor.convert(cl2, convertorConfig);
+		ViObject prettyCl2 = ObjectViConvertor.convert(cl2, convertorConfig);
 		
 		printer.println(prettyCl1);
 		System.out.println();

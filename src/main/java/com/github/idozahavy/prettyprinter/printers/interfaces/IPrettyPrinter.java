@@ -1,16 +1,12 @@
 package com.github.idozahavy.prettyprinter.printers.interfaces;
 
-import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.printers.PrettyPrinterConfig;
+import com.github.idozahavy.prettyprinter.beans.ViObject;
+import com.github.idozahavy.prettyprinter.printers.ViPrinterConfig;
 
 public interface IPrettyPrinter {
 
-	void println(IPrettyString prettyString);
+	void println(ViObject prettyString);
 
-	void printfln(IPrettyString prettyString, PrettyPrinterConfig config);
-
-	void print(IPrettyString prettyString, int row);
-
-	void printf(IPrettyString prettyString, int row, PrettyPrinterConfig config);
+	void printfln(ViObject prettyString, ViPrinterConfig config);
 
 }

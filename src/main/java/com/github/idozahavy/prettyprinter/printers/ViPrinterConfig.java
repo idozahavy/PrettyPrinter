@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PrettyPrinterConfig {
+public class ViPrinterConfig {
 
-	public PrettyPrinterConfig() {
+	public ViPrinterConfig() {
 		topChar = ' ';
 		bottomChar = ' ';
 		leftString = "";

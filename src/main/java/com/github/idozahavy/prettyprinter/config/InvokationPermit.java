@@ -1,6 +1,6 @@
 package com.github.idozahavy.prettyprinter.config;
 
-public enum InvokePermit {
+public enum InvokationPermit {
 	ToString
 	
 	;

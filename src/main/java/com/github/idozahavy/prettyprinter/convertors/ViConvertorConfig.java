@@ -3,24 +3,26 @@ package com.github.idozahavy.prettyprinter.convertors;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.github.idozahavy.prettyprinter.config.InvokePermit;
+import com.github.idozahavy.prettyprinter.config.InvokationPermit;
 
 import lombok.Data;
 
 @Data
-public class PrettyConvertorConfig implements Cloneable {
+public class ViConvertorConfig implements Cloneable {
 
 	protected HashSet<Integer> fieldModifiers;
-	protected HashSet<InvokePermit> invokePermits;
+	protected HashSet<InvokationPermit> invokePermits;
 	protected HashSet<Object> convertedObjects;
+	protected boolean valuesFromGetMethod;
 
-	public PrettyConvertorConfig() {
+	public ViConvertorConfig() {
 		this.fieldModifiers = new HashSet<>();
 		this.invokePermits = new HashSet<>();
 		this.convertedObjects = new HashSet<>();
+		valuesFromGetMethod = false;
 	}
 
-	public PrettyConvertorConfig(Collection<Integer> fieldModifiers, Collection<InvokePermit> invokePermits,
+	public ViConvertorConfig(Collection<Integer> fieldModifiers, Collection<InvokationPermit> invokePermits,
 			Collection<Object> convertedObjects) {
 		this();
 		this.fieldModifiers.addAll(fieldModifiers);
@@ -36,11 +38,11 @@ public class PrettyConvertorConfig implements Cloneable {
 		fieldModifiers.add(modifier);
 	}
 
-	public boolean hasPermit(InvokePermit permit) {
+	public boolean hasPermit(InvokationPermit permit) {
 		return invokePermits.contains(permit);
 	}
 
-	public void addPermit(InvokePermit permit) {
+	public void addPermit(InvokationPermit permit) {
 		invokePermits.add(permit);
 	}
 
@@ -56,7 +58,7 @@ public class PrettyConvertorConfig implements Cloneable {
 		convertedObjects.clear();
 	}
 
-	public PrettyConvertorConfig clone() {
-		return new PrettyConvertorConfig(fieldModifiers, invokePermits, convertedObjects);
+	public ViConvertorConfig clone() {
+		return new ViConvertorConfig(fieldModifiers, invokePermits, convertedObjects);
 	}
 }

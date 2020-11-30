@@ -4,12 +4,12 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.convertors.ObjectPrettyConvertor;
-import com.github.idozahavy.prettyprinter.convertors.PrettyConvertorConfig;
-import com.github.idozahavy.prettyprinter.convertors.table.PrettyTableConvertor;
-import com.github.idozahavy.prettyprinter.printers.PrettyPrinterConfig;
-import com.github.idozahavy.prettyprinter.printers.PrettyStringPrinter;
+import com.github.idozahavy.prettyprinter.beans.ViObject;
+import com.github.idozahavy.prettyprinter.convertors.ObjectViConvertor;
+import com.github.idozahavy.prettyprinter.convertors.ViConvertorConfig;
+import com.github.idozahavy.prettyprinter.printers.ViPrinterConfig;
+import com.github.idozahavy.prettyprinter.printers.ViStringPrinter;
+import com.github.idozahavy.prettyprinter.strlines.StrTableConvertor;
 
 import prettyprinter.tests.beans.TestClass;
 
@@ -21,22 +21,20 @@ public class Test1 {
 		ls.add(new TestClass("r45", 1.1, new int[] {4,3751516,546}));
 		ls.add(new TestClass("aghvr", 5345.1, new int[] {6,2,1}));
 		
-		PrettyPrinterConfig printerConfig = new PrettyPrinterConfig();
+		ViPrinterConfig printerConfig = new ViPrinterConfig();
 		printerConfig.setItemSeperatorString(" ");
-		PrettyStringPrinter printer = new PrettyStringPrinter(printerConfig);
+		ViStringPrinter printer = new ViStringPrinter(printerConfig);
 		
-		PrettyConvertorConfig convertorConfig = new PrettyConvertorConfig();
+		ViConvertorConfig convertorConfig = new ViConvertorConfig();
 		convertorConfig.addModifier(Modifier.PRIVATE);
-		IPrettyString prettyLs = ObjectPrettyConvertor.convert(ls, convertorConfig);
-		
-		PrettyTableConvertor tableConvertor = new PrettyTableConvertor();
-		
-		IPrettyString table = tableConvertor.convert(prettyLs);
-		
+		ViObject prettyLs = ObjectViConvertor.convert(ls, convertorConfig);
 		
 		
 //		printer.println(prettyLs);
-		printer.println(table);
+//		printer.println(table);
+		
+		System.out.println("***");
+		System.out.println(StrTableConvertor.convert(prettyLs));
 	}
 
 }

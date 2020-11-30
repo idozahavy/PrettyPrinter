@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class TestClass {
 	private String aString;
-	private double dDouble;
+	public double dDouble;
 	private int[] ints;
 }

@@ -1,28 +1,28 @@
 package prettyprinter.tests.printer;
 
-import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
-import com.github.idozahavy.prettyprinter.convertors.ObjectPrettyConvertor;
-import com.github.idozahavy.prettyprinter.convertors.PrettyConvertorConfig;
-import com.github.idozahavy.prettyprinter.printers.PrettyPrinter;
-import com.github.idozahavy.prettyprinter.printers.PrettyPrinterConfig;
-import com.github.idozahavy.prettyprinter.printers.PrettyStringPrinter;
+import com.github.idozahavy.prettyprinter.beans.ViObject;
+import com.github.idozahavy.prettyprinter.convertors.ObjectViConvertor;
+import com.github.idozahavy.prettyprinter.convertors.ViConvertorConfig;
+import com.github.idozahavy.prettyprinter.printers.ViPrinter;
+import com.github.idozahavy.prettyprinter.printers.ViPrinterConfig;
+import com.github.idozahavy.prettyprinter.printers.ViStringPrinter;
 
 public class ArraysTest {
 
 	public static void main(String[] args) {
-		PrettyPrinterConfig printerConfig = new PrettyPrinterConfig();
+		ViPrinterConfig printerConfig = new ViPrinterConfig();
 		printerConfig.setItemSeperatorString(", ");
 		printerConfig.setLeftString("[");
 		printerConfig.setRightString("]");
-		PrettyPrinter printer = new PrettyStringPrinter(printerConfig);
+		ViPrinter printer = new ViStringPrinter(printerConfig);
 
-		PrettyConvertorConfig convertorConfig = new PrettyConvertorConfig();
-		IPrettyString prettyStringInts = ObjectPrettyConvertor.convert(new int[] { 1, 3, 2, 6 }, convertorConfig);
-		IPrettyString prettyStringStrings = ObjectPrettyConvertor.convert(new String[] { "ew", "Gfdsg", "5436tr" },
+		ViConvertorConfig convertorConfig = new ViConvertorConfig();
+		ViObject prettyStringInts = ObjectViConvertor.convert(new int[] { 1, 3, 2, 6 }, convertorConfig);
+		ViObject prettyStringStrings = ObjectViConvertor.convert(new String[] { "ew", "Gfdsg", "5436tr" },
 				convertorConfig);
-		IPrettyString prettyStringBooleans = ObjectPrettyConvertor.convert(new boolean[] { false, true, true },
+		ViObject prettyStringBooleans = ObjectViConvertor.convert(new boolean[] { false, true, true },
 				convertorConfig);
-		IPrettyString prettyStringIntegers = ObjectPrettyConvertor.convert(new Integer[] { 1, 3, 2, 6 },
+		ViObject prettyStringIntegers = ObjectViConvertor.convert(new Integer[] { 1, 3, 2, 6 },
 				convertorConfig);
 
 		printer.println(prettyStringInts);

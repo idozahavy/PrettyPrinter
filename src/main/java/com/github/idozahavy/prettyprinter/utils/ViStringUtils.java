@@ -1,6 +1,6 @@
-package com.github.idozahavy.prettyprinter.printers;
+package com.github.idozahavy.prettyprinter.utils;
 
-public class PrettyPrinterUtils {
+public class ViStringUtils {
 
 	public static String padCenter(String str, int length, char padChar) {
 		StringBuilder builder = new StringBuilder(str);

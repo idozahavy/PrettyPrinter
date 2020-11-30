@@ -4,19 +4,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import com.github.idozahavy.prettyprinter.annotations.*;
-import com.github.idozahavy.prettyprinter.beans.SimpleString;
-import com.github.idozahavy.prettyprinter.beans.interfaces.IPrettyString;
+import com.github.idozahavy.prettyprinter.beans.ViObject;
+import com.github.idozahavy.prettyprinter.beans.ViString;
 
-public class FieldPrettyConvertor {
-	public static IPrettyString convert(Field field, Object object, PrettyConvertorConfig convertorConfig) {
-		IPrettyString fieldPrettyString = getFieldValue(field, object, convertorConfig);
+public class FieldViConvertor {
+	public static ViObject convert(Field field, Object object, ViConvertorConfig convertorConfig) {
+		ViObject fieldPrettyString = getFieldValue(field, object, convertorConfig);
 		if (fieldPrettyString == null) {
 			return null;
 		}
 		return fieldPrettyString;
 	}
 
-	//TODO use this
+	// TODO use this
 	@SuppressWarnings("unused")
 	private static String getFieldHeader(Field field) {
 		if (field.isAnnotationPresent(PrettyHeader.class)) {
@@ -26,13 +26,13 @@ public class FieldPrettyConvertor {
 		return field.getName();
 	}
 
-	private static IPrettyString getFieldValue(Field field, Object object, PrettyConvertorConfig config) {
+	private static ViObject getFieldValue(Field field, Object object, ViConvertorConfig config) {
 
 		if (field.isAnnotationPresent(PrettyCensored.class)) {
 			return null;
 		}
 		if (field.isAnnotationPresent(PrettyValue.class)) {
-			return new SimpleString(field.getAnnotation(PrettyValue.class).value());
+			return new ViString(field.getAnnotation(PrettyValue.class).value());
 		}
 
 		if (Modifier.isStatic(field.getModifiers())) {
@@ -57,9 +57,9 @@ public class FieldPrettyConvertor {
 
 		try {
 			// TODO need to create a collection with field name
-			return ObjectPrettyConvertor.convert(field.get(object), config);
+			return ObjectViConvertor.convert(field.get(object), config);
 		} catch (IllegalAccessException | IllegalArgumentException e) {
-			return new SimpleString("[Inaccessable Field]");
+			return new ViString("[Inaccessable Field]");
 		}
 	}
 }
