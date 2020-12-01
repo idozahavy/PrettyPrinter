@@ -9,7 +9,7 @@ import com.github.idozahavy.prettyprinter.convertors.ObjectViConvertor;
 import com.github.idozahavy.prettyprinter.convertors.ViConvertorConfig;
 import com.github.idozahavy.prettyprinter.printers.ViPrinterConfig;
 import com.github.idozahavy.prettyprinter.printers.ViStringPrinter;
-import com.github.idozahavy.prettyprinter.strlines.StrTableConvertor;
+import com.github.idozahavy.prettyprinter.strtable.StrTableConvertor;
 
 import prettyprinter.tests.beans.TestClass;
 

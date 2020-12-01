@@ -1,4 +1,4 @@
-package com.github.idozahavy.prettyprinter.strlines;
+package com.github.idozahavy.prettyprinter.strtable;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -44,6 +44,11 @@ public class StrTable {
 				.sum();
 
 //		return widths.stream().flatMapToInt((num) -> IntStream.builder().add(num).build()).sum();
+	}
+
+	public int getStrWidth(int columnIndex) {
+		return this.rows.parallelStream()
+				.flatMapToInt((ls) -> IntStream.builder().add(ls.get(columnIndex).length()).build()).max().getAsInt();
 	}
 
 	public void padVertical(int ver) {
@@ -179,6 +184,38 @@ public class StrTable {
 			}
 			this.rows.add(rowIndex, row);
 		}
+	}
+
+	public void border(BorderConfig config) {
+		if (config.getLeftStr() != null) {
+			this.insertHor(this.getLRBorder(config.getLeftStr()), 0);
+		}
+		if (config.getRightStr() != null) {
+			this.appendHor(this.getLRBorder(config.getRightStr()));
+		}
+
+		if (config.getTopChar() != null) {
+			this.insertVer(this.getTBBorder(config.getTopChar()), 0);
+		}
+		if (config.getBottomChar() != null) {
+			this.appendVer(this.getTBBorder(config.getBottomChar()));
+		}
+	}
+
+	public StrTable getLRBorder(String str) {
+		StrTable table = new StrTable();
+		for (int i = 0; i < this.getRowCount(); i++) {
+			table.appendVer(str);
+		}
+		return table;
+	}
+
+	public StrTable getTBBorder(String str) {
+		StrTable table = new StrTable();
+		for (int i = 0; i < this.getColumnCount(); i++) {
+			table.appendHor(str.repeat(this.getStrWidth(i)));
+		}
+		return table;
 	}
 
 	@Override

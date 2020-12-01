@@ -6,7 +6,7 @@ import com.github.idozahavy.prettyprinter.beans.ViString;
 import com.github.idozahavy.prettyprinter.config.InvokationPermit;
 import com.github.idozahavy.prettyprinter.convertors.ObjectViConvertor;
 import com.github.idozahavy.prettyprinter.convertors.ViConvertorConfig;
-import com.github.idozahavy.prettyprinter.strlines.StrTableConvertor;
+import com.github.idozahavy.prettyprinter.strtable.StrTableConvertor;
 
 public class Test0 {
 
